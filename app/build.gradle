@@ -77,5 +77,6 @@ dependencies {
     // 基于kotlin-kapt的注释组建
     //noinspection LifecycleAnnotationProcessorWithJava8
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 
 }

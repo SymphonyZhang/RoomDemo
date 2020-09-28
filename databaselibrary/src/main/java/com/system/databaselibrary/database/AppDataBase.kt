@@ -5,12 +5,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.system.databaselibrary.database.dao.DeviceInfoDao
+import com.system.databaselibrary.database.dao.GoodsInfoDao
 import com.system.databaselibrary.database.entity.DeviceInfo
+import com.system.databaselibrary.database.entity.GoodsInfo
 
-@Database(entities = [DeviceInfo::class],version = 1)
+@Database(entities = [DeviceInfo::class,GoodsInfo::class],version = 1)
 abstract class AppDataBase:RoomDatabase() {
 
     abstract fun deviceInfoDao(): DeviceInfoDao
+
+    abstract fun goodsInfoDao(): GoodsInfoDao
 
     companion object{
 
