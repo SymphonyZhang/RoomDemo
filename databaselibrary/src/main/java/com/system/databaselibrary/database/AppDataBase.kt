@@ -4,19 +4,23 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.system.databaselibrary.database.dao.DeviceInfoDao
 import com.system.databaselibrary.database.dao.GoodsInfoDao
+import com.system.databaselibrary.database.dao.UserInfoDao
 import com.system.databaselibrary.database.entity.DeviceInfo
 import com.system.databaselibrary.database.entity.GoodsInfo
+import com.system.databaselibrary.database.entity.UserInfo
 
-@Database(entities = [GoodsInfo::class, DeviceInfo::class/*, UserInfo::class*/], version = 2)
+@Database(entities = [GoodsInfo::class, DeviceInfo::class, UserInfo::class], version = 3)
 abstract class AppDataBase : RoomDatabase() {
 
     abstract fun deviceInfoDao(): DeviceInfoDao
 
     abstract fun goodsInfoDao(): GoodsInfoDao
 
-    //abstract fun userInfoDao(): UserInfoDao
+    abstract fun userInfoDao(): UserInfoDao
 
     companion object {
 
@@ -28,14 +32,14 @@ abstract class AppDataBase : RoomDatabase() {
             }
 
         }*/
-        /*private val MIGRATION_2_3 = object : Migration(2, 3) {
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("CREATE TABLE UserInfo (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_no TEXT UNIQUE NOT NULL , user_name TEXT NOT NULL, user_password TEXT NOT NULL, user_tag INTEGER NOT NULL)")
                 database.execSQL("CREATE UNIQUE INDEX index_UserInfo_user_no ON UserInfo ('user_no')")
                 //CREATE UNIQUE INDEX IF NOT EXISTS `index_UserInfo_user_no` ON `${TABLE_NAME}` (`user_no`)
             }
 
-        }*/
+        }
 
         //For Singleton instantiation
         @Volatile
@@ -46,9 +50,9 @@ abstract class AppDataBase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): AppDataBase {
-            return Room.databaseBuilder(context, AppDataBase::class.java, DB_NAME)/*.addMigrations(
+            return Room.databaseBuilder(context, AppDataBase::class.java, DB_NAME).addMigrations(
                 MIGRATION_2_3
-            )*/.build()
+            ).build()
         }
 
         // Create and pre-populate the database. See this article for more details:

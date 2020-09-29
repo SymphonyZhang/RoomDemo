@@ -52,7 +52,7 @@ data class GoodsInfo(
 /**
  * 管理员用户表[id,管理员工号，管理员名称，管理员密码，超级管理员标志]
  */
-/*@Entity(indices = [Index(value = ["user_no"], unique = true)])
+@Entity(indices = [Index(value = ["user_no"], unique = true)])
 data class UserInfo(
     @ColumnInfo(name = "user_no") var userNo:String = "",
     @ColumnInfo(name = "user_name") var userName:String = "",
@@ -60,4 +60,4 @@ data class UserInfo(
     @ColumnInfo(name = "user_tag") var userTag:Boolean = false
 ){
     @PrimaryKey(autoGenerate = true) var id: Int = 0
-}*/
+}
