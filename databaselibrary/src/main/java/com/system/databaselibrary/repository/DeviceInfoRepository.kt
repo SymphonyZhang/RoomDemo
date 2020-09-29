@@ -11,7 +11,7 @@ class DeviceInfoRepository(context: Context) {
 
     private val deviceInfoDao: DeviceInfoDao = AppDataBase.getInstance(context).deviceInfoDao()
 
-    var calibrateTimes:LiveData<Int>
+    var calibrateTimes: LiveData<Int>
 
     companion object{
         @Volatile private var instant:DeviceInfoRepository? = null

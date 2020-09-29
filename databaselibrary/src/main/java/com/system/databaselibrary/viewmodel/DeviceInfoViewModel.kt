@@ -14,7 +14,7 @@ class DeviceInfoViewModel(application: Application) :AndroidViewModel(applicatio
      */
     private val deviceInfoRepository = DeviceInfoRepository.getInstance(application)
 
-    val calibrateTimes:LiveData<Int>
+    val calibrateTimes: LiveData<Int>
         get() = deviceInfoRepository.calibrateTimes
 
     fun createDeviceInfo(vararg deviceInfo: DeviceInfo){
