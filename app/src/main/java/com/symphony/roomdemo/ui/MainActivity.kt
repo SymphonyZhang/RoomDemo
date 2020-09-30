@@ -10,11 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import com.symphony.roomdemo.I
 import com.symphony.roomdemo.R
 import com.system.databaselibrary.database.entity.GoodsInfo
+import com.system.databaselibrary.database.entity.UserInfo
 import com.system.databaselibrary.util.D
 import com.system.databaselibrary.util.E
-import com.system.databaselibrary.util.TYPE_COUNT
 import com.system.databaselibrary.viewmodel.DeviceInfoViewModel
 import com.system.databaselibrary.viewmodel.GoodsInfoViewModel
+import com.system.databaselibrary.viewmodel.UserInfoViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -22,6 +23,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private val deviceInfoViewModel: DeviceInfoViewModel by viewModels()
     private val goodsInfoViewModel: GoodsInfoViewModel by viewModels()
+    private val userInfoViewModel: UserInfoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 //for (i in 0..10){
                 //deviceInfoViewModel.createDeviceInfo(DeviceInfo())
                 //}
-                val list = arrayOf(
+                /*val list = arrayOf(
                     GoodsInfo(
                         goodsCode = "001",
                         goodsName = "苹果",
@@ -84,7 +86,18 @@ class MainActivity : AppCompatActivity() {
                         stock = 100.0f
                     )
                 )
-                goodsInfoViewModel.createGoodsInfo(list[0], list[1], list[2], list[3], list[4])
+                goodsInfoViewModel.createGoodsInfo(list[0], list[1], list[2], list[3], list[4])*/
+                /*val deviceInfo = DeviceInfo()
+                lifecycleScope.launch {
+                    deviceInfoViewModel.createDeviceInfo(deviceInfo)
+                }*/
+                val list = arrayOf(
+                    UserInfo("001","Jim","123456",true),
+                    UserInfo("002","Tom","456789",false)
+                )
+                lifecycleScope.launch {
+                    userInfoViewModel.createDeviceInfo(list[0],list[1])
+                }
             }
             btn_update -> {
                 //deviceInfoViewModel.updateDeviceInfo(DeviceInfo(orderCount = "100"))
@@ -127,7 +140,7 @@ class MainActivity : AppCompatActivity() {
             }
             btn_delete -> {
                 //deviceInfoViewModel.deleteDeviceInfo(DeviceInfo(id = 5))
-                try {
+                /*try {
                     goodsInfoViewModel.createGoodsInfo(
                         GoodsInfo(
                             goodsCode = "003",
@@ -140,7 +153,19 @@ class MainActivity : AppCompatActivity() {
                     )
                 } catch (e: Exception) {
 
-                }
+                }*/
+                var goods = GoodsInfo(
+                    goodsCode = "004",
+                    goodsName = "卷心菜",
+                    price = 3.500f,
+                    hotKeyGroup = "D0",
+                    hotKey = KeyEvent.KEYCODE_R,
+                    stock = 100.0f
+                )
+                goods.id = 4
+                goodsInfoViewModel.deleteGoodsInfo(
+                    goods
+                )
 
             }
             btn_update_count -> {
