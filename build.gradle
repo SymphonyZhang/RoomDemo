@@ -2,8 +2,9 @@
 buildscript {
     ext.kotlin_version = "1.4.10"
     repositories {
-        google()
-        jcenter()
+        maven {
+            url 'http://pserver:8081/artifactory/android_group/'
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.1"
@@ -16,8 +17,9 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        jcenter()
+        maven {
+            url 'http://pserver:8081/artifactory/android_group/'
+        }
     }
 }
 
